@@ -1,0 +1,120 @@
+using System;
+using System.Windows.Forms;
+
+namespace Dice_Simulator
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            // Close dice roller.
+            this.Close();
+        }
+
+        private void rollButton_Click(object sender, EventArgs e)
+        {
+            // Variables to indicate which face to show on which die.
+            int dieNumberRight;
+            int dieNumberLeft;
+
+            // Create a Random object.
+            Random rand = new Random();
+
+            // Get a random integer in the range of 0 through 6.
+            // Each die face equals its matching number.
+            dieNumberRight = rand.Next(6) + 1;
+            dieNumberLeft = rand.Next(6) + 1;
+
+            // Condensing picture boxes.
+            onePictureBox.Visible = false;
+            twoPictureBox.Visible = false;
+            threePictureBox.Visible = false;
+            fourPictureBox.Visible = false;
+            fivePictureBox.Visible = false;
+            sixPictureBox.Visible = false;
+            pictureBox6.Visible = false;
+            pictureBox5.Visible = false;
+            pictureBox4.Visible = false;
+            pictureBox3.Visible = false;
+            pictureBox2.Visible = false;
+            pictureBox1.Visible = false;
+
+            // Display the side up on the Left die.
+            if (dieNumberLeft == 1)
+            {
+                // Display one up.
+                onePictureBox.Visible = true;
+            }
+            else if (dieNumberLeft == 2)
+            {
+                // Display two up.
+                twoPictureBox.Visible = true;
+            }
+            else if (dieNumberLeft == 3)
+            {
+                // Display three up.
+                threePictureBox.Visible = true;
+            }
+            else if (dieNumberLeft == 4)
+            {
+                //Display four up.
+                fourPictureBox.Visible = true;
+            }
+            else if (dieNumberLeft == 5)
+            {
+                // Display five up.
+                fivePictureBox.Visible = true;
+            }
+            else 
+            {
+                // Display six up.
+                sixPictureBox.Visible = true;
+            }
+            // Display the side up for the Right die.
+            if (dieNumberRight == 1)
+            {
+                // Display one up.
+                pictureBox1.Visible = true;
+            }
+            else if (dieNumberRight == 2)
+            {
+                // Display two up.
+                pictureBox2.Visible = true;
+            }
+            else if (dieNumberRight == 3)
+            {
+                // Display three up.
+                pictureBox3.Visible = true;
+            }
+            else if (dieNumberRight == 4)
+            {
+                //Display four up.
+                pictureBox4.Visible = true;
+            }
+            else if (dieNumberRight == 5)
+            {
+                // Display five up.
+                pictureBox5.Visible = true;
+            }
+            else 
+            {
+                // Display six up.
+                pictureBox6.Visible = true;
+            }
+            if (dieNumberLeft == dieNumberRight)
+            {
+                if (dieNumberLeft == 1)
+                {
+                    MessageBox.Show(this, "Snake Eyes!", "Score!");
+                }
+            }
+                
+
+        }
+    }
+}
