@@ -1,0 +1,64 @@
+using System;
+using System.Windows.Forms;
+
+namespace Project_6
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void calculateButton_Click(object sender, EventArgs e)
+        {
+            double heightInput;        // The user's height.
+            double weightInput;        // The user's weight.
+            double bmiAmount;          // The user's BMI.
+
+            // The super fun height input.
+            heightInput = double.Parse(heightInputTextBox.Text);
+            
+            // The super fun weight input.
+            weightInput = double.Parse(weightInputTextBox.Text);
+
+            // Calculate how fat you are.
+            bmiAmount = 703.0 * weightInput / heightInput / heightInput;
+
+            // Display your fatness.
+            bmiOutputLabel.Text = bmiAmount.ToString("n1");
+
+            if (bmiAmount < 18.5)
+            {
+                // Display that the user is underweight.
+                MessageBox.Show("Your BMI is considered underweight.");
+            }
+
+            if (bmiAmount > 25) 
+            {
+                // Display that the user is overweight.
+                MessageBox.Show("Your BMI is considered overweight.");
+            }
+
+            if (bmiAmount > 18.5 && bmiAmount < 25)
+            {
+                // Display that the user is just right.
+                MessageBox.Show("Your BMI is considered within the right parametres.");
+            }
+        }
+
+            private void exitButton_Click(object sender, EventArgs e)
+        {
+            // Close this form.
+            this.Close();
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            // Clear up all your lies.
+            weightInputTextBox.Text = "";
+            heightInputTextBox.Text = "";
+            bmiOutputLabel.Text = "";
+        }
+    }
+}
