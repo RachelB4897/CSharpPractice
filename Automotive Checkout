@@ -1,0 +1,154 @@
+using System;
+using System.Windows.Forms;
+
+namespace Project_4___Automotive
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        // Sum method.
+        private double Sum(double num1, double num2)
+        {
+            return num1 + num2;
+        }
+
+        private void calculateButton_Click(object sender, EventArgs e)
+        {
+           
+            // Variables for Oil and Lube.
+            double oilChange = 0;
+            double lubeChange = 0;
+
+            // Oil Check Box.
+            if (oilCheckBox.Checked)
+            {
+                oilChange = double.Parse("26");
+            }
+            //Lube Check Box.
+            if (lubegiggityCheckBox.Checked)
+            {
+                lubeChange = double.Parse("18");
+            }
+            double oilLubeCharges = oilChange + lubeChange;
+
+            // Variables for Flushes
+            double radiatorFlush = 0;
+                double transmissionFlush = 0;
+
+                // Radiator Check Box.
+                if (radiatorCheckBox.Checked)
+                {
+                    radiatorFlush = double.Parse("30");
+                }
+                // Transmission Check Box.
+                if (transmissionCheckBox.Checked)
+                {
+                    transmissionFlush = double.Parse("80");
+                }
+            double flushes = radiatorFlush + transmissionFlush;
+
+            // Variables for misc.
+            double inspection = 0;
+            double muffler = 0;
+            double rotation = 0;
+            
+            // Inspection Check Box.
+            if (inspectionCheckBox.Checked)
+            {
+                inspection = double.Parse("15");
+            }
+            // Muffler Check Box.
+            if (mufflerCheckBox.Checked)
+                {
+                muffler = double.Parse("100");
+                }
+            // Rotation Check Box.
+            if (rotationCheckBox.Checked)
+            {
+                rotation = double.Parse("80");
+            }
+            double misc = inspection + muffler + rotation;
+
+            // Parts and Labour variables.
+            int parts;
+            int labour = 0;
+            const double TAX_AMOUNT = 0.06;
+            double partsTotal;
+            double labouredhours;
+
+            // Get parts.
+            if (int.TryParse(partsTextBox.Text, out parts))
+            {
+                // Get taxes.
+                partsTotal = parts * (TAX_AMOUNT + 1);
+                //Display parts plus taxes.
+                partsSumTextBox.Text = partsTotal.ToString("C");
+                //Display taxes minus parts.
+                taxTextBox.Text = ((TAX_AMOUNT * partsTotal).ToString("n"));
+
+                // Get labour.
+                if (int.TryParse(labourTextBox.Text, out labour))
+                {
+                    // Labour and services equation.
+                    labouredhours = labour * 20 + misc;
+
+                    // Display in Service and Labour Text Box.
+                    serviceSumTextBox.Text = labouredhours.ToString("C");
+
+                    // Complete totals.
+                    double totals;
+                    double numOne = flushes + oilLubeCharges;
+                    double numTwo = (misc + partsTotal + labouredhours);
+                    totals = Sum(numOne, numTwo);
+                    totalTextBox.Text = totals.ToString("C");
+                }
+                else
+                {
+                    // Display an error message
+                    MessageBox.Show("Please input a number for labour.");
+                }
+            }
+            else
+            {
+                // Display an error message. 
+                MessageBox.Show("Please input a number for parts.");
+            }
+      
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void oilCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            // Clear check boxes.
+            oilCheckBox.Checked = false;
+            lubegiggityCheckBox.Checked = false;
+            radiatorCheckBox.Checked = false;
+            transmissionCheckBox.Checked = false;
+            inspectionCheckBox.Checked = false;
+            mufflerCheckBox.Checked = false;
+            rotationCheckBox.Checked = false;
+
+            // Clear text boxes.
+            partsTextBox.Text = "0";
+            labourTextBox.Text = "0";
+            serviceSumTextBox.Text = "";
+            partsSumTextBox.Text = "";
+            taxTextBox.Text = "";
+            totalTextBox.Text = "";
+
+        }
+    }
+}
