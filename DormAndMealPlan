@@ -1,0 +1,82 @@
+using System;
+using System.Windows.Forms;
+
+namespace Dorm_and_Meal_Plan
+{
+    public partial class MainForm : Form
+    {
+        public MainForm()
+        {
+            InitializeComponent();
+        }
+
+        private decimal MealCost()
+        {
+            decimal mealCost = 0m;
+
+            if (sevenRadioButton.Checked)
+            {
+                mealCost = 600m;
+            }
+            else if (forteenRadioButton.Checked)
+            {
+                mealCost = 1200m;
+            }
+            else if (unlimitedRadioButton.Checked)
+            {
+                mealCost = 1700m;
+            }
+            return mealCost;     
+        }
+
+        private decimal DormCost()
+        {
+            decimal dormCost = 0m;
+
+            if (allenRadioButton.Checked)
+            {
+                dormCost = 1500m;
+            }
+            else if (pikeRadioButton.Checked)
+            {
+                dormCost = 1600m;
+            }
+            else if (farthingRadioButton.Checked)
+            {
+                dormCost = 1800m;
+            }
+            else if (universityRadioButton.Checked)
+            {
+                dormCost = 2500m;
+            }
+            return dormCost;
+        }
+        
+
+        private void calculateButton_Click(object sender, EventArgs e)
+        {
+            // Variables.
+            decimal dormCost, mealCost;
+            decimal totalCharges = 0m;
+            TotalChargesForm feesDisplay = new TotalChargesForm();
+
+            // Charges.
+            dormCost = DormCost();
+            mealCost = MealCost();
+            totalCharges = dormCost + mealCost;
+
+            // Labels.
+            feesDisplay.dormTextBox.Text = dormCost.ToString("c");
+            feesDisplay.foodTextBox.Text = mealCost.ToString("c");
+            feesDisplay.totalTextBox.Text = totalCharges.ToString("c");
+
+            // Display form.
+            feesDisplay.ShowDialog();
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+    }
+}
