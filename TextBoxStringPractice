@@ -1,0 +1,40 @@
+using System;
+using System.Windows.Forms;
+
+namespace String_Practice
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string output;
+            output = dOTWTBox.Text + ", " + nOTMTBox.Text + " " + dOTMTBox.Text + ", " + yearTBox.Text;
+            outputTBox.Text = output;
+            if (checkBox1.Checked)
+                label5.Text = "Happy Birthday you filthy animal.";
+            else
+                label5.Text = "No cake for you.";
+                
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            dOTWTBox.Text = "";
+            nOTMTBox.Text = "";
+            dOTMTBox.Text = "";
+            yearTBox.Text = "";
+            outputTBox.Text = "";
+            label5.Text = "";
+        }
+    }
+}
