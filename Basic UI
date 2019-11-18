@@ -1,0 +1,98 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Basic_UI
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void SubmitBtn_Click(object sender, EventArgs e)
+        {
+            // multiple vars to hold all of the input from the form
+            string fName = fNameTxtBox.Text;
+            string lName = lNameTxtBox.Text;
+            string dayOfWeek = dayBox.Text ;
+            string monthOfYear = monthBox.Text ;
+            string currentYear = yearBox.Text;
+            string reason = reasonBox.Text;
+
+
+            // making the 2nd box items visible onClick and displaying an echo for all of the information
+            // put into the form
+            fNameEcho.Visible = true;
+            fNameEcho.Text = "First Name: " +  fName;
+            lNameEcho.Visible = true;
+            lNameEcho.Text = "Last Name: " + lName;
+            dobEcho.Visible = true;
+            dobEcho.Text = "Date of Birth:" + dayOfWeek + " " + monthOfYear + ", " + currentYear;
+            reasonEcho.Visible = true;
+            reasonEcho.Text = "Reason for Visit: " + reason;
+            acceptEcho.Visible = true;
+            yesBtn.Visible = true;
+            noBtn.Visible = true;
+
+
+            if (medEYes.Checked)
+            {
+                string emergency;
+                emergency = "Please stop what you are doing and call 911 immediately.";
+                MessageBox.Show(emergency);
+            }
+
+
+        }
+
+        private void DayBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void YesBtn_Click(object sender, EventArgs e)
+        {
+            // A text box after form is accepted
+            string message;
+            message = "Thank you for your submission. We will contact you within the next 30 minutes.";
+            MessageBox.Show(message);
+            this.Close();
+        }
+
+        private void NoBtn_Click(object sender, EventArgs e)
+        {
+            // hiding all of the input information when the users says no
+            fNameEcho.Visible = false;
+            lNameEcho.Visible = false;
+            dobEcho.Visible = false;
+            reasonEcho.Visible = false;
+            acceptEcho.Visible = false;
+            yesBtn.Visible = false;
+            noBtn.Visible = false;
+        }
+
+        private void ClearBtn_Click(object sender, EventArgs e)
+        {
+            // clearing the form on clear 
+            fNameTxtBox.Text = "";
+            lNameTxtBox.Text = "";
+            dayBox.Text = "";
+            monthBox.Text = "";
+            yearBox.Text = "";
+            reasonBox.Text = "";
+        }
+
+        private void CloseForm_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+    }
+}
